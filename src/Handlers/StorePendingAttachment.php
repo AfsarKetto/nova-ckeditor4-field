@@ -45,7 +45,7 @@ class StorePendingAttachment
         $attachment = config('nova.ckeditor-field.pending_attachment_model')::create([
             'draft_id' => $request->draftId,
             'attachment' => $request->upload->storeAs(
-                self::STORAGE_PATH,
+                $this->field->path ?? self::STORAGE_PATH,
                 $filename,
                 $this->field->disk
             ),

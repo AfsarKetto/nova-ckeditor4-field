@@ -70,6 +70,7 @@ class CKEditor extends Trix
         $this->setFilesPlugins();
 
         $this->disk($disk);
+        $this->path = $path;
 
         $this->attach(new StorePendingAttachment($this))
             ->detach(new DetachAttachment($this))
