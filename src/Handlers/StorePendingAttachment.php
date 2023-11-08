@@ -54,7 +54,7 @@ class StorePendingAttachment
             'disk' => $this->field->disk,
         ])->attachment;
 
-        $url = str_replace("/3/media/", "/media/", $attachment);
+        $url = str_replace("3/media/", "media/", $attachment);
 
         return Storage::disk($this->field->disk)->url($url);
     }
