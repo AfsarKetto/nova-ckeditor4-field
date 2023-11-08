@@ -11,7 +11,7 @@ use Waynestate\Nova\CKEditor4Field\CKEditor;
 
 class StorePendingAttachment
 {
-    public const STORAGE_PATH = '/3/attachments';
+    public const STORAGE_PATH = '/attachments';
 
     /**
      * The field instance.
@@ -42,17 +42,21 @@ class StorePendingAttachment
 
         $this->abortIfFileNameExists($filename);
 
+        $path = empty($this->field->path) ? self::STORAGE_PATH : $this->field->path;
+
         $attachment = config('nova.ckeditor-field.pending_attachment_model')::create([
             'draft_id' => $request->draftId,
             'attachment' => $request->upload->storeAs(
-                self::STORAGE_PATH,
+                $path,
                 $filename,
                 $this->field->disk
             ),
             'disk' => $this->field->disk,
         ])->attachment;
 
-        return Storage::disk($this->field->disk)->url($attachment);
+        $url = str_replace("/3/media/", "/media/", $attachment);
+
+        return Storage::disk($this->field->disk)->url($url);
     }
 
     /**

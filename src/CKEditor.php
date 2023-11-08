@@ -63,7 +63,7 @@ class CKEditor extends Trix
      * @param string|null $disk
      * @return $this
      */
-    public function withFiles($disk = null, $path = '/')
+    public function withFiles($disk = null, $path = '')
     {
         $this->withFiles = true;
 
