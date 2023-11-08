@@ -116,11 +116,11 @@ class CKEditor extends Trix
             $extraPlugins = explode(',', preg_replace('/\s+/', '', $this->meta['options']['extraPlugins']));
 
             if (!in_array('uploadimage', $extraPlugins)) {
-                $extraPlugins[] = 'uploadimage';
+                $extraPlugins[] = 'uploadimage,youtube';
             }
 
             if (!in_array('image2', $extraPlugins)) {
-                $extraPlugins[] = 'image2';
+                $extraPlugins[] = 'image2,youtube';
             }
 
             $this->options([
@@ -128,7 +128,7 @@ class CKEditor extends Trix
             ]);
         } else {
             $this->options([
-                'extraPlugins' => 'image2,uploadimage',
+                'extraPlugins' => 'image2,uploadimage,youtube',
             ]);
         }
     }
